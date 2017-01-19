@@ -3,6 +3,7 @@ session_start();
    require_once("utils/db_connection.php");
    require_once("utils/functions.php");
 
+   //daca se apasa butonul de login si indeplineste conditiile de login, se retin campuri despre faptul ca e logat, username, id, si daca este admin
    if(isset($_POST["login"])) {
         $username = mysqli_real_escape_string($connection, $_POST["username"]);
         $password = mysqli_real_escape_string($connection, $_POST["password"]);
@@ -23,6 +24,7 @@ session_start();
         }
    }
 
+   //daca se apasa butonul de logout se sterg variabilele care retineau informatii despre cel logat
    if(isset($_POST["logout"])) {
        unset($_SESSION["logged_in"]);
        unset($_SESSION["username"]);
@@ -30,6 +32,7 @@ session_start();
        unset($_SESSION["special"]);
    }
 
+   //daca se apasa butonul de checkout se introduce in baza de date comanda, se ia id-ul si apoi se introduc produsele asociate comenzii
    if(isset($_POST["checkout"])) {
     if(isset($_SESSION["logged_in"])) {
        $price = round($_POST["price"],3);

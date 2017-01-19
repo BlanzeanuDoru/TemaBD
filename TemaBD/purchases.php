@@ -2,10 +2,11 @@
 session_start();
    require_once("utils/db_connection.php");
    require_once("utils/functions.php");
-
+   //verifica daca userul ajuns aici este logat si este admin
    if(!isset($_SESSION["logged_in"]) || !isset($_GET["id"]) || $_SESSION["user_id"] != $_GET["id"]) {
         redirect_to("index.php");
    }
+   //trimite interogarea la baza de date - se scot comenzile userului
    $id = $_GET["id"];
    $query = "SELECT * FROM comenzi WHERE id_user={$id};";
    $result = get_query_assoc($connection, $query);
@@ -27,7 +28,7 @@ session_start();
 
     <div class="col-md-6">
     	<?php
-
+        //se afiseaza comenzile si produsele corespunzatoare
         $string = "<table class=\"table table-hover\">";
         $string .= "<tr><th>Time</th><th>Pret</th></tr>";
         while($comanda = mysqli_fetch_assoc($result)) {

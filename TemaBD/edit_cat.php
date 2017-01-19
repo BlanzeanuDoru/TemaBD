@@ -2,11 +2,11 @@
 session_start();
    require_once("utils/db_connection.php");
    require_once("utils/functions.php");
-
+   //verifica daca userul ajuns aici este logat si este admin
    if(!isset($_SESSION["logged_in"]) || !$_SESSION["special"]) {
    	    redirect_to("index.php");
    }
-
+    //se face update la categoria cu id-ul trimis
    if (isset($_POST["submit"]) && $_POST["submit"]=="Edit") {
       $name = $_POST["nume"];
       $id_categorie = $_POST["id_categorie"];
@@ -37,6 +37,7 @@ session_start();
 
 
     <?php
+        //se scoate categoria ceruta pentru a afisa campurile cu valorile completate cu ce e in baza de date
         $query = "SELECT * FROM categorii WHERE id_categorie={$_GET["id"]};";
         $result = get_query_assoc($connection, $query);
         $row = mysqli_fetch_assoc($result);

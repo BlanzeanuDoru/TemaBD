@@ -2,11 +2,12 @@
 session_start();
    require_once("utils/db_connection.php");
    require_once("utils/functions.php");
-
+   //verifica daca userul ajuns aici este logat si este admin
    if(!isset($_SESSION["logged_in"]) || !$_SESSION["special"]) {
    	    redirect_to("index.php");
    }
 
+  //trimite interogarea la baza de date
   $query = "SELECT t.count_nr, A.name, A.id_afectiune FROM afectiuni A LEFT OUTER JOIN ( SELECT count(*) count_nr, id_afectiune FROM produse GROUP BY id_afectiune ) as t ON A.id_afectiune=t.id_afectiune ORDER BY A.name;";
   $result = get_query_assoc($connection, $query);
 
@@ -28,6 +29,7 @@ session_start();
 
 
 		<?php
+        //scrie rezultatele din baza de date intr-un tabel
 		    $string = "<div class=\"afectiuni\">";
 		    $string .= "<table class=\"table\">";
 		    $string .= "<tr><th>Nume</th><th>Numar produse</th><th>Actions</th></tr>";

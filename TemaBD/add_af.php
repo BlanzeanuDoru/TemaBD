@@ -3,10 +3,12 @@ session_start();
    require_once("utils/db_connection.php");
    require_once("utils/functions.php");
 
+   //verifica daca userul ajuns aici este logat si e admin
    if(!isset($_SESSION["logged_in"]) || !$_SESSION["special"]) {
    	    redirect_to("index.php");
    }
 
+   //proceseaza cererea cand se apasa butonul submit - face insert
    if (isset($_POST["submit"]) && $_POST["submit"]=="Add") {
       $name = $_POST["nume"];
       $query = "INSERT INTO afectiuni (name) VALUES ('{$name}');";

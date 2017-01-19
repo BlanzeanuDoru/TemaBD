@@ -2,11 +2,11 @@
 session_start();
    require_once("utils/db_connection.php");
    require_once("utils/functions.php");
-
+   //verifica daca userul ajuns aici este logat si este admin
    if(!isset($_SESSION["logged_in"]) || !$_SESSION["special"]) {
    	    redirect_to("index.php");
-   }
-
+   } 
+   //se sterge userul dupa id-ul trimis prin GET
    $id = $_GET["id"];
    $query = "DELETE FROM users WHERE id_user={$id};";
    $res = get_query_assoc($connection, $query);

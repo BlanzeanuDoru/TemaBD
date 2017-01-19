@@ -2,11 +2,11 @@
 session_start();
    require_once("utils/db_connection.php");
    require_once("utils/functions.php");
-
+   //verifica daca userul ajuns aici este logat si este admin
    if(!isset($_SESSION["logged_in"]) || !$_SESSION["special"]) {
    	    redirect_to("index.php");
    }
-
+   //se face update la produsul cu id-ul trimis
    if (isset($_POST["submit"]) && $_POST["submit"]=="Edit") {
       $id_prod = $_POST["id_produs"];
       $name = $_POST["nume"];
@@ -39,6 +39,7 @@ session_start();
 
 
     <?php
+        //se scot informatii despre produsul pe care dorim sa il editam pentru a afisa la utilizator campurile deja completate
         $query = "SELECT * FROM produse WHERE id_produs={$_GET["id"]}";
         $result = get_query_assoc($connection, $query);
         $row = mysqli_fetch_assoc($result);

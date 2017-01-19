@@ -2,11 +2,11 @@
 session_start();
    require_once("utils/db_connection.php");
    require_once("utils/functions.php");
-
+   //verifica daca userul ajuns aici este logat si este admin
    if(!isset($_SESSION["logged_in"]) || !$_SESSION["special"]) {
    	    redirect_to("index.php");
    }
-
+  //trimite interogarea la baza de date
   $query = "SELECT t.count_nr, U.username, U.email, U.admin, U.id_user FROM users U LEFT OUTER JOIN ( SELECT count(*) count_nr, id_user FROM comenzi GROUP BY id_user ) as t ON U.id_user=t.id_user ORDER BY U.username;";
   $result = get_query_assoc($connection, $query);
 
@@ -28,6 +28,7 @@ session_start();
 
 
 		<?php
+        //se dispun informatiile despre useri intr-un tabel
 		    $string = "<div class=\"users\">";
 		    $string .= "<table class=\"table\">";
 		    $string .= "<tr><th>Username</th><th>email</th><th>Numar comenzi</th><th>admin</th><th>Actions</th></tr>";
