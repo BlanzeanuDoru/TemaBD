@@ -1,0 +1,42 @@
+html,body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+div.comanda {
+    width: 100%;
+    height: 20px;
+    border-radius: 3%;
+    margin: 5px;
+}
+
+div.details {
+	display: none;
+}
+div.comanda div.top {
+	position: relative;
+}
+div.comanda div.top span.time {
+	position: absolute;
+	left: 15%;
+}
+div.comanda div.top span.pret {
+	position: absolute;
+	right: 15%;
+}
+div.comanda:hover {
+	background-color: gray;
+}
+
+div.produs {
+	
+}
+
+div.details div.produs span.name {
+	margin: 10px;
+}
+
+div.details div.produs span.pret {
+	margin-left: 50px;
+}

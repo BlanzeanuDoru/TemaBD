@@ -1,0 +1,66 @@
+CREATE TABLE users (
+    id_user INT(7) PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(15) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    admin tinyint(1) NOT NULL
+    );
+
+CREATE TABLE categorii (
+    id_categorie INT(7) PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL
+    );
+
+CREATE TABLE afectiuni (
+    id_afectiune INT(7) PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL
+    );
+
+CREATE TABLE comenzi (
+    id_comanda INT(7) PRIMARY KEY AUTO_INCREMENT,
+    id_user INT,
+    pret float NOT NULL,
+    time datetime NOT NULL,
+    FOREIGN KEY (id_user) REFERENCES users(id_user)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+    );
+
+CREATE TABLE produse (
+    id_produs INT(5) PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL,
+    id_categorie INT,
+    id_afectiune INT,
+    price FLOAT NOT NULL,
+    FOREIGN KEY (id_categorie) REFERENCES categorii(id_categorie)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    FOREIGN KEY (id_afectiune) REFERENCES afectiuni(id_afectiune)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+    );
+
+CREATE TABLE produse_vandute (
+    id_comanda INT,
+    id_produs INT,
+    FOREIGN KEY (id_comanda) REFERENCES comenzi(id_comanda)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    FOREIGN KEY (id_produs) REFERENCES produse(id_produs)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+    );
+
+
+
+COMPLEXE:
+
+Comenzi date de admini:
+	SELECT * FROM comenzi C JOIN users U ON C.id_user=U.id_user WHERE C.id_user=ANY(SELECT id_user FROM users WHERE admin=1);
+Comenzi cu pretul peste medie:
+	SELECT * FROM comenzi C JOIN users U ON C.id_user=U.id_user WHERE C.pret>=(SELECT AVG(pret) FROM comenzi);
+Numarul maxim de produse dintr-o comanda/userul care a dat comanda
+    SELECT MAX(count_column) max, U.username FROM ( SELECT count(id_produs) as count_column, id_comanda as id_cmd FROM produse_vandute Group by id_comanda ) AS t JOIN comenzi C ON C.id_comanda=t.id_cmd JOIN users U ON C.id_user=U.id_user;
+Media pretului produselor pe comanda
+    SELECT C.pret 'total', t.avg 'media', U.username FROM ( SELECT avg(price) 'avg', PV.id_comanda FROM produse P JOIN produse_vandute PV ON PV.id_produs=P.id_produs group by id_comanda ) as t JOIN comenzi C ON C.id_comanda=t.id_comanda JOIN users U ON U.id_user=C.id_user ORDER BY total DESC;
+    

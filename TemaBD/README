@@ -1,0 +1,2 @@
+CREATE USER 'temaUSER'@'localhost' IDENTIFIED BY 'secret';
+GRANT ALL PRIVILEGES ON temabd . * TO 'temaUSER'@'localhost';

@@ -1,0 +1,150 @@
+@media all {
+    html, body, .wrapper {
+        height: 100%;
+        width: 100%;
+
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f9fcf7+29,f5f9f0+100 */
+        background: #f9fcf7; /* Old browsers */
+        background: -moz-linear-gradient(top,  #f9fcf7 29%, #f5f9f0 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  #f9fcf7 29%,#f5f9f0 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  #f9fcf7 29%,#f5f9f0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fcf7', endColorstr='#f5f9f0',GradientType=0 ); /* IE6-9 */
+    }
+
+
+    input.logout {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    /*header*/
+    div.header {
+        height: 17%;
+        text-align: center;
+    }
+    div.header span.title {
+        font-family: "Times New Roman";
+        font-size: 4em;
+    }
+    
+    div.body {
+        height: 77%;
+    }
+
+    div.menu {
+        height: 100%;
+    }
+    div.content {
+        height: 100%;
+    }
+    
+    button.search-button {
+        /*Aliniere buton*/
+        margin: auto;
+        display: block;
+    }
+
+    button.to-cart {
+        /*Aliniere buton*/
+        margin: auto;
+        display: block;
+    }
+
+
+    input.login-button {
+        margin: auto;
+        display: block;
+    }
+    li.checkout a button {
+        margin: auto;
+        display: block;
+    }
+
+    div.login-dropdown, div.cart-dropdown {
+        display: inline-block;
+        float: right;
+        margin-right: 10px;
+    }
+
+    div.header div.title {
+        height: 50%;
+    }
+    div.header div.login-cart-menu {
+        height: 50%;
+    }
+
+
+    /*footer*/
+    div.footer {
+        text-align: center;
+        height: 5%;
+    }
+
+    div.footer span.copyright {
+        font-size: 1.1em;
+        font-family: "Times New Roman";
+    }
+
+    div.produs span.name {
+        margin: auto;
+        font-family: sans-serif;
+        font-size: 1.2em;
+        overflow: hidden;
+        word-wrap: break-word;
+    }
+
+    div.produs span.price {
+
+    }
+    
+    div.information {
+        text-align: center;
+        height: 25%;
+    }
+    
+    div.produs div.image {
+        width: 100%;
+        height: 75%;
+    }
+    div.produs div.image img {
+        height: inherit;
+        width: inherit;
+    }
+    div.produs {
+        width: 12%;
+    }
+    span.remove {
+        display: inline-block;
+    }
+    a.in-cart-product {
+        font-family: verdana;
+    }
+
+    div.body div.content div.produs {
+        border-radius: 5%;
+        position:relative;
+        padding:5px;
+        margin-bottom:30px;
+        display: inline-block;
+        margin: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    div.body div.content div.produs:hover {
+        box-shadow: 0 4px 8px 0.1px, 0 6px 20px 0.1px;
+    }
+    
+}
+
+@media screen and (max-width: 640px) {
+    div.produs {
+        width: 100px;
+    }
+}
+
+cart-dropdown ul.dropdown-menu > li { float: left; width: 50%; }
+
+form.hidden-form {
+    display: none;
+}
+
